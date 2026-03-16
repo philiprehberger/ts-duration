@@ -1,21 +1,21 @@
-# @philiprehberger/duration-ts
+# @philiprehberger/ts-duration
 
-[![CI](https://github.com/philiprehberger/duration-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/duration-ts/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@philiprehberger/duration-ts.svg)](https://www.npmjs.com/package/@philiprehberger/duration-ts)
-[![License](https://img.shields.io/github/license/philiprehberger/duration-ts)](LICENSE)
+[![CI](https://github.com/philiprehberger/ts-duration/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-duration/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@philiprehberger/ts-duration.svg)](https://www.npmjs.com/package/@philiprehberger/ts-duration)
+[![License](https://img.shields.io/github/license/philiprehberger/ts-duration)](LICENSE)
 
 Parse, format, and manipulate time durations.
 
 ## Installation
 
 ```bash
-npm install @philiprehberger/duration-ts
+npm install @philiprehberger/ts-duration
 ```
 
 ## Usage
 
 ```ts
-import { duration, Duration } from '@philiprehberger/duration-ts';
+import { duration, Duration } from '@philiprehberger/ts-duration';
 
 const timeout = duration('5m 30s');
 timeout.toMilliseconds(); // 330000
