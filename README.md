@@ -1,5 +1,9 @@
 # @philiprehberger/duration-ts
 
+[![CI](https://github.com/philiprehberger/duration-ts/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/duration-ts/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@philiprehberger/duration-ts.svg)](https://www.npmjs.com/package/@philiprehberger/duration-ts)
+[![License](https://img.shields.io/github/license/philiprehberger/duration-ts)](LICENSE)
+
 Parse, format, and manipulate time durations.
 
 ## Installation
