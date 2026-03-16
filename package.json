@@ -1,6 +1,6 @@
 {
   "name": "@philiprehberger/duration-ts",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Parse, format, and manipulate time durations",
   "type": "module",
   "main": "./dist/index.cjs",
