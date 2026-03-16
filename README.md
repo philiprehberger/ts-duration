@@ -1,6 +1,6 @@
 # @philiprehberger/ts-duration
 
-[![CI](https://github.com/philiprehberger/ts-duration/actions/workflows/ci.yml/badge.svg)](https://github.com/philiprehberger/ts-duration/actions/workflows/ci.yml)
+[![CI](https://github.com/philiprehberger/ts-duration/actions/workflows/publish.yml/badge.svg)](https://github.com/philiprehberger/ts-duration/actions/workflows/publish.yml)
 [![npm version](https://img.shields.io/npm/v/@philiprehberger/ts-duration.svg)](https://www.npmjs.com/package/@philiprehberger/ts-duration)
 [![License](https://img.shields.io/github/license/philiprehberger/ts-duration)](LICENSE)
 
@@ -57,6 +57,15 @@ duration('1h')
 | `.add(other)` / `.subtract(other)` | Arithmetic |
 | `.multiply(n)` / `.divide(n)` / `.abs()` | Arithmetic |
 | `.equals(other)` / `.isLongerThan(other)` / `.isShorterThan(other)` / `.isZero()` | Comparison |
+
+
+## Development
+
+```bash
+npm install
+npm run build
+npm test
+```
 
 ## License
 
