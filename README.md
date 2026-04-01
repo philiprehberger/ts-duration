@@ -44,6 +44,38 @@ duration('1h')
   .humanize(); // "2 hours, 30 minutes"
 ```
 
+### Relative Time
+
+```ts
+duration('2d').toRelative();      // "2 days ago"
+duration('-3h').toRelative();     // "in 3 hours"
+duration('500ms').toRelative();   // "just now"
+```
+
+### Clamping
+
+```ts
+duration('5m').clamp('1m', '3m').humanize();  // "3 minutes"
+duration('30s').clamp('1m', '1h').humanize(); // "1 minute"
+```
+
+### Quantization
+
+```ts
+duration('1m 30s').roundTo('m').humanize(); // "2 minutes"
+duration('7h').roundTo('d').humanize();     // "0 milliseconds"
+duration('14h').roundTo('d').humanize();    // "1 day"
+```
+
+### Between Two Dates
+
+```ts
+const start = new Date('2026-01-01');
+const end = new Date('2026-01-03');
+Duration.between(start, end).humanize(); // "2 days"
+Duration.between(start, end).toRelative(); // "2 days ago"
+```
+
 ## API
 
 | Method | Description |
@@ -53,9 +85,12 @@ duration('1h')
 | `.humanize()` | `"2 hours, 30 minutes"` |
 | `.short()` | `"2h 30m"` |
 | `.toISO()` | `"PT2H30M"` |
+| `.toRelative()` | `"2 days ago"`, `"in 3 hours"`, `"just now"` |
 | `.toMilliseconds()` / `.toSeconds()` / `.toMinutes()` / `.toHours()` / `.toDays()` | Convert to number |
 | `.add(other)` / `.subtract(other)` | Arithmetic |
 | `.multiply(n)` / `.divide(n)` / `.abs()` | Arithmetic |
+| `.clamp(min, max)` | Constrain duration within bounds |
+| `.roundTo(unit)` | Round to nearest unit (`ms`, `s`, `m`, `h`, `d`, `w`) |
 | `.equals(other)` / `.isLongerThan(other)` / `.isShorterThan(other)` / `.isZero()` | Comparison |
 
 ## Development

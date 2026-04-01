@@ -51,6 +51,44 @@ export function short(ms: number): string {
   return neg ? `-${str}` : str;
 }
 
+export function toRelative(ms: number): string {
+  const abs = Math.abs(ms);
+  const past = ms >= 0;
+
+  if (abs < 5_000) return 'just now';
+
+  let value: number;
+  let unit: string;
+
+  if (abs < 60_000) {
+    value = Math.round(abs / 1_000);
+    unit = 'second';
+  } else if (abs < 3_600_000) {
+    value = Math.round(abs / 60_000);
+    unit = 'minute';
+  } else if (abs < 86_400_000) {
+    value = Math.round(abs / 3_600_000);
+    unit = 'hour';
+  } else if (abs < 604_800_000) {
+    value = Math.round(abs / 86_400_000);
+    unit = 'day';
+  } else if (abs < 2_592_000_000) {
+    value = Math.round(abs / 604_800_000);
+    unit = 'week';
+  } else if (abs < 31_536_000_000) {
+    value = Math.round(abs / 2_592_000_000);
+    unit = 'month';
+  } else {
+    value = Math.round(abs / 31_536_000_000);
+    unit = 'year';
+  }
+
+  const plural = value === 1 ? unit : `${unit}s`;
+
+  if (!past) return `in ${value} ${plural}`;
+  return `${value} ${plural} ago`;
+}
+
 export function toISO(ms: number): string {
   const abs = Math.abs(ms);
   const { days, hours, minutes, seconds, milliseconds } = decompose(abs);

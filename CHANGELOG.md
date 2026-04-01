@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.0
+
+- Add relative time formatting with toRelative()
+- Add duration clamping with clamp(min, max)
+- Add quantization with roundTo(unit)
+- Add Duration.between(start, end) factory method
+
 ## 0.1.4
 
 - Standardize README to 3-badge format with emoji Support section

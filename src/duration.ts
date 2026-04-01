@@ -1,6 +1,16 @@
 import { parseDuration } from './parse';
-import { humanize, short, toISO } from './format';
+import { humanize, short, toISO, toRelative } from './format';
 import { between } from './between';
+import type { DurationUnit } from './types';
+
+const UNIT_MS: Record<DurationUnit, number> = {
+  ms: 1,
+  s: 1_000,
+  m: 60_000,
+  h: 3_600_000,
+  d: 86_400_000,
+  w: 604_800_000,
+};
 
 export class Duration {
   readonly ms: number;
@@ -16,11 +26,24 @@ export class Duration {
   humanize(): string { return humanize(this.ms); }
   short(): string { return short(this.ms); }
   toISO(): string { return toISO(this.ms); }
+  toRelative(): string { return toRelative(this.ms); }
   toMilliseconds(): number { return this.ms; }
   toSeconds(): number { return this.ms / 1_000; }
   toMinutes(): number { return this.ms / 60_000; }
   toHours(): number { return this.ms / 3_600_000; }
   toDays(): number { return this.ms / 86_400_000; }
+
+  clamp(min: string | number | Duration, max: string | number | Duration): Duration {
+    const minMs = min instanceof Duration ? min.ms : parseDuration(min);
+    const maxMs = max instanceof Duration ? max.ms : parseDuration(max);
+    if (minMs > maxMs) throw new Error('min must not be greater than max');
+    return new Duration(Math.min(Math.max(this.ms, minMs), maxMs));
+  }
+
+  roundTo(unit: DurationUnit): Duration {
+    const unitMs = UNIT_MS[unit];
+    return new Duration(Math.round(this.ms / unitMs) * unitMs);
+  }
 
   add(other: string | number | Duration): Duration {
     const otherMs = other instanceof Duration ? other.ms : parseDuration(other);
