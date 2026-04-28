@@ -1,6 +1,7 @@
 import { parseDuration } from './parse';
 import { humanize, short, toISO, toRelative } from './format';
 import { between } from './between';
+import { businessDayMs, businessMs, type BusinessHoursOptions } from './business';
 import type { DurationUnit } from './types';
 
 const UNIT_MS: Record<DurationUnit, number> = {
@@ -23,6 +24,14 @@ export class Duration {
     return new Duration(between(date1, date2));
   }
 
+  static businessDays(
+    start: Date | number | string,
+    end: Date | number | string,
+    opts?: BusinessHoursOptions,
+  ): Duration {
+    return new Duration(businessMs(start, end, opts));
+  }
+
   humanize(): string { return humanize(this.ms); }
   short(): string { return short(this.ms); }
   toISO(): string { return toISO(this.ms); }
@@ -32,6 +41,14 @@ export class Duration {
   toMinutes(): number { return this.ms / 60_000; }
   toHours(): number { return this.ms / 3_600_000; }
   toDays(): number { return this.ms / 86_400_000; }
+
+  toBusinessHours(_opts?: BusinessHoursOptions): number {
+    return this.ms / 3_600_000;
+  }
+
+  toBusinessDays(opts?: BusinessHoursOptions): number {
+    return this.ms / businessDayMs(opts);
+  }
 
   clamp(min: string | number | Duration, max: string | number | Duration): Duration {
     const minMs = min instanceof Duration ? min.ms : parseDuration(min);

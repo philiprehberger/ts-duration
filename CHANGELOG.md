@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.3.0 (2026-04-27)
+- Add `Duration.businessDays(start, end, opts?)` for business-time calculations
+- Add `toBusinessHours()` and `toBusinessDays()` instance helpers
+- Compliance: README aligned with template
+
 ## 0.2.0
 
 - Add relative time formatting with toRelative()
